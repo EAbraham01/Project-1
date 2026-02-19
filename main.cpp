@@ -27,6 +27,15 @@ string* suffixes = new string[maxWords];
 int wordsRead = readWordsFromFile(filename, words, maxWords);
 int chainSize = buildMarkovChain(words, wordsRead, order, prefixes, suffixes, maxWords);
 
+if (wordsRead == -1){
+    cout << "File does not exist, please try again." << endl;
+    return -1;
+}
+
+if (chainSize <= 0){
+    cout << "Chain is empty, please try again." << endl;
+    return -1;
+}
 cout <<"-----Info------" << endl;
 cout << "File name: " << filename << endl;
 cout << "Order: " << order << endl;
