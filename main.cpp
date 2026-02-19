@@ -1,47 +1,41 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "markov.h"
 using namespace std;
 
-//Test 1
+
 int main(){
 srand(time(0));
+string filename;
+int order, numWords;
 
-string testWords[] = {"the", "cat", "sat", "down"};
-cout << joinWords(testWords, 0, 2) << endl;
-cout << joinWords(testWords, 1, 3) << endl;
+cout << "Enter input filename: ";
+cin >> filename;
 
-//Test 2
+cout << "Enter order (1, 2, or 3): ";
+cin >> order;
 
-string words[1000];
-int count = readWordsFromFile("test.txt", words, 1000);
-cout << "Read " << count << " words" << endl;
-for (int i = 0; i < 10 && i < count; i++) {
-    cout << words[i] << endl;
-}
+cout << "Enter number of words to generate: ";
+cin >> numWords;
 
+const int maxWords = 100000;
+string* words = new string[maxWords];
+string* prefixes = new string[maxWords];
+string* suffixes = new string[maxWords];
 
-//Test 3
-string prefixes[10000], suffixes[10000];
-int chainSize = buildMarkovChain(words, count, 1, prefixes, suffixes, 10000);
-for (int i = 0; i < 20 && i < chainSize; i++) {
-    cout << "[" << prefixes[i] << "] -> [" << suffixes[i] << "]" << endl;
-}
+int wordsRead = readWordsFromFile(filename, words, maxWords);
+int chainSize = buildMarkovChain(words, wordsRead, order, prefixes, suffixes, maxWords);
 
-//Test 4
-for (int i = 0; i < 10; i++) {
-    cout << getRandomSuffix(prefixes, suffixes, chainSize, "the") << endl;
-}
+cout <<"-----Info------" << endl;
+cout << "File name: " << filename << endl;
+cout << "Order: " << order << endl;
+cout << "Number of words generated: " << numWords << endl << endl;
 
-//Test 5
-for (int i = 0; i < 5; i++) {
-    cout << getRandomPrefix(prefixes, chainSize) << endl;
-}
+string generatedText = generateText(prefixes, suffixes, chainSize, order, numWords);
+cout << "Generated Text: " << endl << generatedText << endl;
 
-//Test 6
-string output = generateText(prefixes, suffixes, chainSize, 1, 20);
-cout << output << endl;
-
-
-
-
+delete[] words;
+delete[] prefixes;
+delete[] suffixes;
 }
