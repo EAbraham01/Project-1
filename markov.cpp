@@ -15,7 +15,7 @@ string joinWords(const string words[], int startIndex, int count){
     }
     return result;
 }
-/*
+
 int readWordsFromFile(string filename, string words[], int maxWords){
     int counter = 0;
     ifstream inFile;
@@ -96,5 +96,5 @@ string generateText(const string prefixes[], const string suffixes[], int chainS
     }
     return result;
 }
-*/
+
 
