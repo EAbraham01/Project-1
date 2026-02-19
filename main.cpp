@@ -4,6 +4,7 @@ using namespace std;
 
 //Test 1
 int main(){
+srand(time(0));
 
 string testWords[] = {"the", "cat", "sat", "down"};
 cout << joinWords(testWords, 0, 2) << endl;
@@ -35,6 +36,10 @@ for (int i = 0; i < 10; i++) {
 for (int i = 0; i < 5; i++) {
     cout << getRandomPrefix(prefixes, chainSize) << endl;
 }
+
+//Test 6
+string output = generateText(prefixes, suffixes, chainSize, 1, 20);
+cout << output << endl;
 
 
 

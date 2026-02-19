@@ -4,6 +4,7 @@ using namespace std;
 #ifndef MARKOV_H
 #define MARKOV_H
 
+
 string joinWords(const string words[], int startIndex, int count);
 int readWordsFromFile(string filename, string words[], int maxWords);
 int buildMarkovChain(const string words[], int numWords, int order,string prefixes[], string suffixes[],int maxChainSize);

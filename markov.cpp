@@ -83,7 +83,7 @@ string generateText(const string prefixes[], const string suffixes[], int chainS
         if (order == 1)
             currentPrefix = newWord;
         else{
-            string* last = new string[order];
+            string last[order];
             stringstream shift(currentPrefix);
             for (int i = 0; i < order; i++){
                 shift >> last[i];
